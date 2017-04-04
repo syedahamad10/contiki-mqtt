@@ -1,6 +1,9 @@
 #include "mqtt-service.h"
  
-PROCESS_THREAD(mqtt_client_process, ev, data)
+PROCESS(mqtt_event_process, "MQTT Publisher");
+AUTOSTART_PROCESSES(&mqtt_event_process);
+
+PROCESS_THREAD(mqtt_event_process, ev, data)
 {
     static uip_ip6addr_t server_address;
  
@@ -66,8 +69,8 @@ PROCESS_THREAD(mqtt_client_process, ev, data)
             // out the topic and message
             if(mqtt_event_is_publish(data))
             {
-                const char* topic = mqtt_svc_event_get_topic(data);
-                const char* message = mqtt_svc_event_get_message(data);
+                const char* topic = mqtt_event_get_topic(data);
+                const char* message = mqtt_event_get_data(data);
                 int level = 0;
  
                 printf("%s = %s\n", topic, message);
