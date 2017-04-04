@@ -14,5 +14,7 @@ the APPS variable in your application's makefile.
 
 See mqtt-service.h for documentation and example.c for example usage.
 
+If you get any problem, it might be helpful to go through this issue thread https://github.com/esar/contiki-mqtt/issues/4 
+
 For more exmples of usage, look in the devices/* directories in
 http://github.com/esar/myha
